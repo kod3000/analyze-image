@@ -1,5 +1,5 @@
 # Use an official Node runtime as a parent image
-FROM node:18
+FROM node:21
 
 # Set the working directory in the container
 WORKDIR /app/frontend
@@ -9,10 +9,11 @@ COPY package.json /app/frontend
 
 # Install Angular CLI globally
 RUN npm install -g @angular/cli
-RUN npm install -g @angular-devkit/build-angular --force
 
 # Copy the current directory contents into the container
 COPY . /app/frontend
+
+RUN npm install --save-dev @angular-devkit/build-angular --legacy-peer-deps
 
 RUN npm install
 
